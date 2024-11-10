@@ -5,7 +5,7 @@ import Graphic from "./Graphic";
 import Active from "../SVG/Active";
 export default function Stats({ graphicData, data }) {
   return (
-    <div className="justify-center w-full grid my-5">
+    <div className="justify-center w-full grid my-5 scale-[0.8]">
       <Graphic data={graphicData} />
 
       <div className="flex w-full items-center bg-blue-600 shadow-md rounded-lg px-3 py-2 text-slate-700 font-semibold">
