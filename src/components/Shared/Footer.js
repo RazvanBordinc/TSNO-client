@@ -6,9 +6,10 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="py-12 bg-white shadow-t-md">
+    <footer className="py-12 shadow-t-md">
       <Link
         href={"https://github.com/RazvanBordinc"}
+        target="_blank"
         className="transition-all rounded-full hover:bg-gray-300 size-12 justify-center items-center mx-auto flex"
       >
         <Github custom={"size-10"} />

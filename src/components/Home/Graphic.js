@@ -1,22 +1,30 @@
 /** @format */
-
-import React from "react";
-
+"use client";
+import React, { useEffect, useState } from "react";
 export default function Graphic({ data = 1 }) {
-  const percentage = Math.round((data / 9999) * 20); //impartitorul e numarul maxim de mesaje active permise, iar inmultitorul este numarul maxim de spike-uri in grafic
+  const [rendered, setRendered] = useState(false);
+
+  useEffect(() => {
+    setRendered(true);
+  }, []);
+
+  const percentage = Math.round((data / 9999) * 20); // The divisor is the max active messages allowed, multiplier is the max spikes
 
   const totalLines = Array.from({ length: 20 }, (_, index) => index);
 
   return (
     <div className="pl-5 mt-10">
-      <p className="text-2xl text-center font-semibold mb-1 ">Active notes</p>
+      <p className="text-2xl text-center font-semibold mb-1">Active notes</p>
       <div className="flex items-center gap-2.5 py-1 rounded-full">
         {totalLines.map((e) => (
           <div
             key={e}
-            className={`w-1.5 h-9 rounded-full rotate-45 ${
-              e < percentage ? "bg-blue-600" : "bg-gray-300"
+            className={`w-1.5 h-9 rounded-full rotate-45 transition-colors duration-500 ${
+              rendered && e < percentage ? "bg-blue-600" : "bg-gray-300"
             }`}
+            style={{
+              transitionDelay: `${e * 0.05}s`,
+            }}
           ></div>
         ))}
       </div>

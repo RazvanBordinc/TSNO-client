@@ -10,11 +10,11 @@ export default function Content() {
   ];
 
   return (
-    <div className="px-5">
-      <h1>content</h1>
+    <div className="px-5 mt-8 text-center">
+      <h2 className="font-semibold text-3xl">Transfer Short Notes Online</h2>
 
-      <Stats graphicData={data[1].value} data={data} />
       <Action />
+      <Stats graphicData={data[1].value} data={data} />
     </div>
   );
 }
