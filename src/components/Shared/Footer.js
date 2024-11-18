@@ -15,7 +15,7 @@ export default function Footer() {
         <Github custom={"size-10"} />
       </Link>
       <p className="text-base font-normal text-center text-gray-600 mt-7 font-pj">
-        Made with &#x2661; by Bordînc Valentin-Răzvan
+        Made by Bordînc Valentin-Răzvan
       </p>
     </footer>
   );

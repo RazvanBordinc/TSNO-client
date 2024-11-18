@@ -1,6 +1,6 @@
 /** @format */
 
-import Content from "@/components/Home/Content";
+import Content from "@/components/Content/Content";
 import fetchStats from "@/components/ServerFetch/fetchStats"; // Corrected the import path
 
 export default async function Page() {

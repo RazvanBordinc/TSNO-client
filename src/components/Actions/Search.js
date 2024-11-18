@@ -1,7 +1,7 @@
 /** @format */
 "use client";
 import React, { useState } from "react";
-import AddModal from "./Modals/AddModal";
+import AddModal from "../Modals/AddModal";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,7 +33,7 @@ export default function Search() {
 
     try {
       const response = await fetch(
-        `https://localhost:7279/api/view-note?Code=${searchTerm}`,
+        `http://localhost:5283/api/view-note?Code=${searchTerm}`,
         {
           method: "GET",
           headers: {

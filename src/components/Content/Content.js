@@ -1,7 +1,7 @@
 /** @format */
 import React from "react";
-import Action from "./Action";
-import Stats from "./Stats";
+import Action from "../Actions/Action";
+import Stats from "../Visuals/Stats";
 
 export default function Content({ data }) {
   return (

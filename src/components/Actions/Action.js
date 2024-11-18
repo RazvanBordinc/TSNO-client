@@ -2,7 +2,7 @@
 import React from "react";
 import Append from "./Append";
 import Search from "./Search";
-import Instructions from "./Instructions";
+import Instructions from "../Visuals/Instructions";
 
 export default function Action() {
   return (

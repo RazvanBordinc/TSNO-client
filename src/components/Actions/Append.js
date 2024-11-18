@@ -3,8 +3,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import AppendSvg from "../SVG/Append";
-import AddModal from "./Modals/AddModal";
-import Qr from "./Qr";
+import AddModal from "../Modals/AddModal";
+import Qr from "../Visuals/Qr";
 
 export default function Append() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,12 +44,13 @@ export default function Append() {
       };
 
       try {
-        const response = await fetch("https://localhost:7279/api/add-note", {
+        const response = await fetch("http://localhost:5283/api/add-note", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "*/*",
           },
+
           body: JSON.stringify(payload),
         });
 
