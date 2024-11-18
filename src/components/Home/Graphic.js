@@ -8,8 +8,7 @@ export default function Graphic({ data = 1 }) {
     setRendered(true);
   }, []);
 
-  const percentage = Math.round((data / 9999) * 20); // The divisor is the max active messages allowed, multiplier is the max spikes
-
+  const percentage = Math.round((data / 100) * 20);
   const totalLines = Array.from({ length: 20 }, (_, index) => index);
 
   return (

@@ -3,7 +3,6 @@ import React from "react";
 import Append from "./Append";
 import Search from "./Search";
 import Instructions from "./Instructions";
-import Qr from "./Qr";
 
 export default function Action() {
   return (

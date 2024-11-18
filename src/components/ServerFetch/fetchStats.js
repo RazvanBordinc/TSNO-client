@@ -2,12 +2,12 @@
 
 export default async function fetchStats() {
   try {
-    const res = await fetch("https://localhost:7279/api/view-stats", {
+    const res = await fetch("http://localhost:5283/api/view-stats", {
       method: "GET",
       headers: {
         Accept: "*/*",
       },
-      mode: "cors", // Allow cross-origin requests
+      mode: "cors",
     });
 
     if (!res.ok) {
