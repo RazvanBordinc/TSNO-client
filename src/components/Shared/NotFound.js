@@ -8,7 +8,7 @@ export default function NotFound() {
   const router = useRouter();
 
   const handleBackToHome = () => {
-    router.push("/"); // Redirect to the homepage
+    router.push("/");
   };
 
   return (
@@ -21,8 +21,8 @@ export default function NotFound() {
           Oops! Page Not Found
         </h2>
         <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-          It seems we can't find the page you're looking for. Don't worry, you
-          can head back to the homepage and start fresh.
+          It seems we can&apos;t find the page you&apos;re looking for.
+          Don&apos;t worry, you can head back to the homepage and start fresh.
         </p>
         <button
           onClick={handleBackToHome}

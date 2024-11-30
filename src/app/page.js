@@ -1,9 +1,9 @@
 /** @format */
 
 import Content from "@/components/Content/Content";
-import fetchStats from "@/components/ServerFetch/fetchStats"; // Corrected the import path
+import fetchStats from "@/components/ServerFetch/fetchStats";
 
 export default async function Page() {
-  const data = await fetchStats(); // Fetch stats
-  return <Content data={data} />; // Pass data to Content component
+  const data = await fetchStats();
+  return <Content data={data} />;
 }

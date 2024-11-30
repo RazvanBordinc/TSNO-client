@@ -1,6 +1,6 @@
 /** @format */
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import InstructionsSvg from "../SVG/Instructions";
 
 export default function Instructions() {
@@ -9,11 +9,11 @@ export default function Instructions() {
 
   const handleToggleModal = () => setIsModalOpen(!isModalOpen);
 
-  const handleClickOutside = (e) => {
+  const handleClickOutside = useCallback((e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setIsModalOpen(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -22,7 +22,7 @@ export default function Instructions() {
       document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isModalOpen]);
+  }, [isModalOpen, handleClickOutside]);
 
   return (
     <div className="relative">

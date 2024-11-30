@@ -1,15 +1,19 @@
 /** @format */
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 
-export default function AddModal({ isOpen, onClose, children }) {
+export default function AddModal({ isOpen, onClose, children, reset }) {
   const modalRef = useRef();
 
-  const handleClickOutside = (e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      onClose();
-    }
-  };
+  const handleClickOutside = useCallback(
+    (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        onClose();
+        if (reset) window.location.reload();
+      }
+    },
+    [onClose, reset]
+  );
 
   useEffect(() => {
     if (isOpen) {
@@ -18,7 +22,7 @@ export default function AddModal({ isOpen, onClose, children }) {
       document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
+  }, [isOpen, handleClickOutside]);
 
   if (!isOpen) return null;
 

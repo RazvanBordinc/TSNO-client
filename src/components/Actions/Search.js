@@ -8,7 +8,7 @@ export default function Search() {
   const [note, setNote] = useState(null);
   const [errors, setErrors] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [copyNotification, setCopyNotification] = useState(false); // State for the notification
+  const [copyNotification, setCopyNotification] = useState(false);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -43,8 +43,8 @@ export default function Search() {
       );
 
       const data = await response.json();
-      setNote(data); // Set the note content
-      setIsModalOpen(true); // Open modal to display the note
+      setNote(data);
+      setIsModalOpen(true);
     } catch (error) {
       setErrors("This note doesn't exist!");
     }
@@ -53,9 +53,8 @@ export default function Search() {
   const handleCopy = () => {
     if (note && note.notes) {
       navigator.clipboard.writeText(note.notes);
-      setCopyNotification(true); // Show the notification
+      setCopyNotification(true);
 
-      // Hide the notification after 1 second
       setTimeout(() => {
         setCopyNotification(false);
       }, 1000);
@@ -71,19 +70,19 @@ export default function Search() {
             value={searchTerm}
             onChange={handleInputChange}
             placeholder="ex: 1234"
-            className="flex-grow text-slate-900 font-semibold px-2 rounded-lg bg-transparent outline-none"
+            className="flex-grow text-slate-900 font-semibold px-2 rounded-lg bg-transparent outline-none placeholder-slate-700"
           />
           {searchTerm && (
             <button
               onClick={handleClear}
-              className="text-slate-500 hover:text-slate-700 font-semibold mr-2"
+              className="text-slate-700 hover:text-slate-800 font-semibold mr-2"
             >
               Clear
             </button>
           )}
           <button
             onClick={handleSearch}
-            className="text-slate-500 hover:text-slate-700 font-semibold mr-2"
+            className="text-slate-700 hover:text-slate-800 font-semibold mr-2"
           >
             Search
           </button>
@@ -125,7 +124,6 @@ export default function Search() {
         )}
       </AddModal>
 
-      {/* Copy Notification */}
       {copyNotification && (
         <div className="fixed bottom-4 right-16 transform bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg animate-fade-out">
           <div className="flex items-center space-x-2">

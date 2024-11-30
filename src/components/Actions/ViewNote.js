@@ -1,47 +1,11 @@
 /** @format */
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AddModal from "@/components/Modals/AddModal";
 
-export default function ViewNote({ code }) {
-  const [note, setNote] = useState(null);
-  const [errors, setErrors] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function ViewNote({ note, error }) {
+  const [isModalOpen, setIsModalOpen] = useState(!!note);
   const [copyNotification, setCopyNotification] = useState(false);
-
-  useEffect(() => {
-    console.log("code", code);
-    const validateAndFetchNote = async () => {
-      if (!/^\d{1,4}$/.test(code)) {
-        setErrors("Invalid code. Must be numeric and up to 4 digits.");
-        return;
-      }
-
-      try {
-        const response = await fetch(
-          `http://localhost:5283/api/view-note?Code=${code}`,
-          {
-            method: "GET",
-            headers: {
-              Accept: "*/*",
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Note not found");
-        }
-
-        const data = await response.json();
-        setNote(data);
-        setIsModalOpen(true);
-      } catch (error) {
-        setErrors("This note doesn't exist!");
-      }
-    };
-
-    validateAndFetchNote();
-  }, [code]);
 
   const handleCopy = () => {
     if (note && note.notes) {
@@ -55,13 +19,19 @@ export default function ViewNote({ code }) {
 
   return (
     <div>
-      {errors && !note && (
-        <div className="text-center mt-10 text-red-600 font-semibold text-lg">
-          {errors}
+      {error && !note && (
+        <div className="text-center mt-32 w-full mb-24 text-red-600 font-semibold text-4xl flex items-center space-x-2">
+          <span className="flex w-1/4 h-1 bg-red-400"></span>
+          <span className="flex w-1/2 justify-center">{error}</span>
+          <span className="block w-1/4 h-1 bg-red-400"></span>
         </div>
       )}
 
-      <AddModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <AddModal
+        reset
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      >
         {note ? (
           <div>
             <h2 className="text-center font-bold text-xl mb-4 text-blue-600">
@@ -83,7 +53,10 @@ export default function ViewNote({ code }) {
               </div>
             </div>
             <button
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setIsModalOpen(false);
+                window.location.reload();
+              }}
               className="mt-6 w-full py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors duration-200 shadow-md"
             >
               Close
@@ -115,27 +88,6 @@ export default function ViewNote({ code }) {
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .animate-fade-out {
-          animation: fadeOut 1s ease-out forwards;
-        }
-
-        @keyframes fadeOut {
-          0% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          80% {
-            opacity: 0.5;
-            transform: translateY(0);
-          }
-          100% {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-        }
-      `}</style>
     </div>
   );
 }

@@ -8,6 +8,7 @@ export default function Footer() {
   return (
     <footer className="py-12 shadow-t-md">
       <Link
+        aria-label="github"
         href={"https://github.com/RazvanBordinc"}
         target="_blank"
         className="transition-all rounded-full hover:bg-gray-300 size-12 justify-center items-center mx-auto flex"
