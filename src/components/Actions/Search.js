@@ -33,7 +33,7 @@ export default function Search() {
 
     try {
       const response = await fetch(
-        `http://localhost:5283/api/view-note?Code=${searchTerm}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/view-note?Code=${searchTerm}`,
         {
           method: "GET",
           headers: {

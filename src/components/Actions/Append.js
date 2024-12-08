@@ -44,23 +44,43 @@ export default function Append() {
       };
 
       try {
-        const response = await fetch("http://localhost:5283/api/add-note", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "*/*",
-          },
-
-          body: JSON.stringify(payload),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/add-note`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "*/*",
+            },
+            body: JSON.stringify(payload),
+          }
+        );
 
         const data = await response.json();
         setNoteResponse(data);
-        setCountdown(300); // Reset timer to 5 minutes
+        setCountdown(300);
         setResponseModalOpen(true);
         setIsModalOpen(false);
       } catch (error) {
         console.log("Error:", error);
+
+        if (process.env.NEXT_BUILD_ENV === "build") {
+          console.log("Mocking add-note API response during build");
+          setNoteResponse({
+            Message: "Note added successfully!",
+            addNote: {
+              Id: 101,
+              Code: 1234,
+              Notes: "",
+              DeleteWhenOpen: true,
+            },
+          });
+          setCountdown(300);
+          setResponseModalOpen(true);
+          setIsModalOpen(false);
+        } else {
+          throw error;
+        }
       }
     }
   };
@@ -80,7 +100,6 @@ export default function Append() {
     return () => clearInterval(timer);
   }, [responseModalOpen, countdown]);
 
-  // Format countdown as mm:ss
   const formatCountdown = () => {
     const minutes = Math.floor(countdown / 60);
     const seconds = countdown % 60;
@@ -104,7 +123,6 @@ export default function Append() {
 
   return (
     <div className="relative">
-      {/* Add Notes Button */}
       <div
         className="p-1 bg-blue-600 rounded-lg shadow-lg hover:scale-105 transition-transform"
         onClick={handleToggleModal}
@@ -115,7 +133,6 @@ export default function Append() {
         </button>
       </div>
 
-      {/* Add Note Modal */}
       <AddModal isOpen={isModalOpen} onClose={handleCancel}>
         <p className="text-left mb-2 font-semibold tracking-wide text-lg">
           Write below your note
@@ -179,7 +196,6 @@ export default function Append() {
         </button>
       </AddModal>
 
-      {/* Response Modal */}
       <AddModal
         isOpen={responseModalOpen}
         onClose={() => setResponseModalOpen(false)}
