@@ -1,0 +1,21 @@
+
+node_modules
+
+# Ignore build output
+.next
+
+.git
+.gitignore
+
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.DS_Store
+
+.env
+.env.local
+.env.*.local
+
+.vscode
+.idea
+*.swp
