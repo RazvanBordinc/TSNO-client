@@ -1,42 +1,24 @@
 /** @format */
 
-let cache = {
-  data: null,
-  expiry: null,
-};
-
 export default async function fetchStats() {
-  const cacheTTL = 5 * 60 * 1000;
+  const backendUrl = process.env.INTERNAL_BACKEND_URL || "http://backend:8080";
 
   try {
-    if (cache.data && cache.expiry > Date.now()) {
-      console.log("Serving from cache");
-      return cache.data;
-    }
-
-    const res = await fetch("http://localhost:5283/api/view-stats", {
+    const response = await fetch(`${backendUrl}/api/view-stats`, {
       method: "GET",
-      headers: {
-        Accept: "*/*",
-      },
-      mode: "cors",
+      headers: { Accept: "application/json" },
     });
+    if (!response.ok)
+      throw new Error(`Failed to fetch stats: ${response.statusText}`);
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch stats: ${res.statusText}`);
-    }
-
-    const data = await res.json();
-
-    cache = {
-      data,
-      expiry: Date.now() + cacheTTL,
-    };
-
-    console.log("Fetched fresh data");
+    const data = await response.json();
+    console.log("Fetched fresh stats:", data);
     return data;
   } catch (error) {
     console.error("Error fetching stats:", error);
-    throw error;
+    return [
+      { title: "Error Total Messages", value: 1111 },
+      { title: "Error Active Messages", value: 11 },
+    ];
   }
 }
