@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TSNO Frontend
 
-## Getting Started
+## Overview
+The frontend of **"Transfer Short Notes Online" (TSNO)** is built with **Next.js**, **React**, and **Tailwind CSS**. Its purpose is to provide a user-friendly interface that allows users to quickly create and retrieve notes. Users can generate unique links to access notes on any device, share them easily, and even use QR codes for seamless transfers. The frontend leverages Server-Side Rendering (SSR) to improve performance and integrates smoothly with the backend API for note management and expiration logic.
 
-First, run the development server:
+## Key Technologies
+- **Next.js (App Router)**  
+  - Offers SSR for improved performance and SEO.
+  - Simplifies routing, code splitting, and API integration.
+
+- **React**  
+  - Enables a component-based architecture for maintainable, scalable frontends.
+
+- **Tailwind CSS**  
+  - Provides utility-first styling, ensuring rapid UI development.
+  - Delivers responsive, mobile-first designs out of the box.
+
+- **NPM Packages for QR Codes**  
+  - Allows for quick QR code generation to share note links effortlessly.
+
+## Features of the Frontend
+- **Simple Note Creation UI:** Users can input or paste notes directly.  
+- **Configurable Expiration:** Notes can expire after a single viewing or after 5 minutes if not opened.  
+- **Instant Link Generation:** On creation, a unique link is generated for sharing.  
+- **QR Code Generation:** Users can produce a QR code for convenient access on another device.  
+- **SSR Advantages:** Pages load quickly and are immediately visible, enhancing user experience.  
+- **Responsive Design:** Tailwind CSS ensures the UI adapts to all screen sizes.
+
+## Running the Frontend
+**Install Dependencies:**
+```bash
+npm install
+```
+Run Development Server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Visit http://localhost:3000 to access the frontend.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build for Production:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
+The production server also runs on http://localhost:3000.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- NEXT_PUBLIC_BACKEND_URL: URL of the backend API (e.g., http://localhost:8080 for local development). Update accordingly for production.
