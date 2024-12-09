@@ -3,6 +3,8 @@
 ## Overview
 The frontend of **"Transfer Short Notes Online" (TSNO)** is built with **Next.js**, **React**, and **Tailwind CSS**. Its purpose is to provide a user-friendly interface that allows users to quickly create and retrieve notes. Users can generate unique links to access notes on any device, share them easily, and even use QR codes for seamless transfers. The frontend leverages Server-Side Rendering (SSR) to improve performance and integrates smoothly with the backend API for note management and expiration logic.
 
+![image](https://github.com/user-attachments/assets/784e5e0e-747c-4069-aaa0-ed35ade67b82)
+
 ## Key Technologies
 - **Next.js (App Router)**  
   - Offers SSR for improved performance and SEO.
@@ -44,6 +46,7 @@ Build for Production:
 npm run build
 npm start
 ```
+
 The production server also runs on http://localhost:3000.
 
 ## Environment Variables
