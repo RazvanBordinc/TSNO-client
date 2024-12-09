@@ -2,17 +2,16 @@
 "use client";
 import React, { useEffect, useRef, useCallback } from "react";
 
-export default function AddModal({ isOpen, onClose, children, reset }) {
+export default function AddModal({ isOpen, onClose, children }) {
   const modalRef = useRef();
 
   const handleClickOutside = useCallback(
     (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
         onClose();
-        if (reset) window.location.reload();
       }
     },
-    [onClose, reset]
+    [onClose]
   );
 
   useEffect(() => {

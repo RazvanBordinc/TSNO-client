@@ -27,11 +27,7 @@ export default function ViewNote({ note, error }) {
         </div>
       )}
 
-      <AddModal
-        reset
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      >
+      <AddModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {note ? (
           <div>
             <h2 className="text-center font-bold text-xl mb-4 text-blue-600">
@@ -55,7 +51,6 @@ export default function ViewNote({ note, error }) {
             <button
               onClick={() => {
                 setIsModalOpen(false);
-                window.location.reload();
               }}
               className="mt-6 w-full py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors duration-200 shadow-md"
             >
